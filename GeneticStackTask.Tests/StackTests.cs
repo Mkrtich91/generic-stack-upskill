@@ -13,7 +13,9 @@ namespace GenericStackTask.Tests
     [TestFixture(new int[] { }, 3, 0, TypeArgs = new Type[] { typeof(int) })]
     public class StackTests<T>
     {
+#pragma warning disable IDE1006
         private const int someValue = 3;
+#pragma warning restore IDE1006
         private readonly Stack<T> stack;
         private readonly T[] array;
         private readonly T value;
@@ -110,7 +112,11 @@ namespace GenericStackTask.Tests
             int count = this.stack.Count;
             for (int i = 1; i <= someValue; i++)
             {
+#pragma warning disable S1481
+#pragma warning disable IDE0059
                 T item = this.stack.Pop();
+#pragma warning restore IDE0059
+#pragma warning restore S1481
             }
 
             Assert.That(this.stack.Count == count - someValue);
@@ -125,7 +131,9 @@ namespace GenericStackTask.Tests
             {
                 foreach (var item in this.stack)
                 {
+#pragma warning disable S1481
                     T t = this.stack.Pop();
+#pragma warning restore S1481
                 }
             }, "Stack cannot be changed during iteration.");
         }
